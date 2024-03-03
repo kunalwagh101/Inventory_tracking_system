@@ -1,0 +1,26 @@
+{% extends 'store/list.html' %}
+
+{% block search %}
+<div class="container-box p-2">
+    <form action="{% url 'store:search-allocation' %}">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+    </form>
+</div>
+{% endblock %}
+
+{% block usefilter %}
+<div></div>
+{% endblock %}
+
+{% block items %}
+{% for object in object_list %}
+<div class="d-flex justify-content-between align-items-center w-100 p-2 border-bottom">
+    <strong style="width: 10%;">{{object.equipment}}</strong>
+    <span>{{ object.user|title }}</span>
+    <div>
+        <a href="{% url 'store:update-allocation' pk=object.pk %}" class="btn btn-outline-success btn-sm">Edit</a>
+        <a href="{% url 'store:delete-allocation' pk=object.pk %}" class="btn btn-outline-danger btn-sm">Delete</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

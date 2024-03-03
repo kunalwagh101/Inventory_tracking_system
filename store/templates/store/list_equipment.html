@@ -1,0 +1,26 @@
+{% extends 'store/list.html' %}
+
+{% block search %}
+<div class="container-box p-2">
+    <form action="{% url 'store:search-equipment' equipment_type=equipment_type %}">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+    </form>
+</div>
+{% endblock %}
+
+{% block filter %}
+<ul class="dropdown-menu dropdown-menu-lg-end">
+    <li><a href="{% url 'store:particular-equipments' equipment_type=equipment_type filter='working'%}" class="dropdown-item">Working</a></li>
+    <li><a href="{% url 'store:particular-equipments' equipment_type=equipment_type filter='assigned'%}" class="dropdown-item">Assigned</a></li>
+    <li><a href="{% url 'store:particular-equipments' equipment_type=equipment_type filter='under_repair'%}" class="dropdown-item">Under Repair</a></li>
+</ul>
+{% endblock %}
+
+{% block items %}
+{% for object in object_list %}
+<div class="d-flex justify-content-between align-items-center w-100 p-2 border-bottom">
+    <strong>{{object.label}}</strong>
+    <a href="{% url 'store:detail-equipment' pk=object.pk equipment_type=equipment_type %}" class="btn btn-outline-dark btn-sm">View Details</a>
+</div>
+{% endfor %}
+{% endblock %}

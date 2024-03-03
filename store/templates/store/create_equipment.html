@@ -1,0 +1,24 @@
+{% extends 'store/form.html' %}
+
+{% block jquery %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#id_equipment_type').change(function(){
+            var equipment_type = $(this).val();
+            $.ajax({
+                url: '/get_label/',
+                type: 'GET',
+                data: {
+                    'equipment_type': equipment_type
+                },
+                success: function(data){
+                    $('#id_label').val(data)
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

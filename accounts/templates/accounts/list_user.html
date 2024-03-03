@@ -1,0 +1,37 @@
+{% extends 'store/list.html' %}
+
+{% block search %}
+<div class="row container-box p-2">
+    <div class="col-9">
+      <form action="{% url 'accounts:search-user' %}">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+      </form>
+    </div>
+  
+    <div class="col-3 position-relative">
+      <div class="position-absolute end-0">
+        <a href="{% url 'accounts:add-user' %}" class="btn btn-success add-button">Add New</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block usefilter %}
+<div></div>
+{% endblock %}
+
+{% block items %}
+{% for object in object_list %}
+<div class="d-flex justify-content-between align-items-center w-100 p-2 border-bottom">
+    <strong style="width: 10%;">{{object.get_full_name}}</strong>
+    <span>{% if object.is_superuser %}Admin{% else %}Staff{% endif %}</span>
+    <div>
+        {% if request.user.is_superuser or request.user == object %}
+          <a href="{% url 'accounts:update-user' object.pk %}" class="btn btn-outline-success btn-sm">Edit</a>
+          <a href="{% url 'accounts:delete-user' object.pk %}" class="btn btn-outline-danger btn-sm">Delete</a>
+        {% else %}
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

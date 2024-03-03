@@ -1,0 +1,42 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="row container-box p-2">
+  <div class="col-9">
+    <form action="{% url 'store:search-equipment-type' %}">
+      <input type="text" class="form-control" placeholder="Search" name="search">
+    </form>
+  </div>
+
+  <div class="col-3 position-relative">
+    <div class="position-absolute end-0">
+      <a href="{% url 'store:add-equipment-type' %}" class="btn btn-success add-button">Add New</a>
+    </div>
+  </div>
+</div>
+
+<div class="overflow-auto m-0 p-0" style="height: 90%;">
+  <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3">
+    {% for equipment_type in equipment_types %}
+    {% with variable=equipment_type.get_remaining_equipments %}
+    <div class="col rounded mb-3 p-0 m-2 shadow {% if variable < 5 %}bg-danger bg-gradient{% else %}bg-light{% endif %}" style="max-width: 250px;">
+      <div class="text-center">
+        <div class="position-relative">
+          <div class="position-absolute end-0 p-1">
+            <a href="{% url 'store:delete-equipment-type' equipment_type.pk %}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <h5 class="m-2">{{equipment_type}}</h5>
+      </div>
+      <hr>
+      <div class="d-flex align-items-center justify-content-center m-2">
+        <h3>{{variable}}</h5>
+      </div>
+      <a href="{% url 'store:particular-equipments' equipment_type=equipment_type.name filter='working' %}" class="btn {% if variable < 5 %}btn-outline-light{% else %}btn-outline-secondary{% endif %} btn-sm m-2">List Items</a>
+    </div>
+    {% endwith %}
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}

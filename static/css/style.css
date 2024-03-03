@@ -1,0 +1,133 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.container-box{
+    height: 10%;
+    width: 100%;
+}
+
+.functional-tabs{
+    display: none;
+}
+
+#desktop-mode{
+    width: 15%;
+}
+
+.bg-purple{
+    background-color: #7952b3;
+}
+
+.border-bottom{
+    border-bottom: 1px solid black;
+}
+
+.border-right{
+    border-right: 1px solid black;
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 751px){
+    .buttons{
+        font-size: 0.9rem;
+        padding: 1px;
+        margin: 1px;
+    }
+
+    .add-button{
+        font-size: 1rem;
+        padding: 2px;
+    }
+}
+
+@media only screen and (max-width: 750px) and (min-width: 501px){
+
+    .functional-tabs{
+        display: block;
+    }
+
+    #side-bar{
+        display: none;
+    }
+
+    .buttons{
+        font-size: 0.8rem;
+        padding: 1px;
+        margin: 1px;
+    }
+
+    .add-button{
+        font-size: 0.9rem;
+        padding: 1px;
+    }
+}
+
+@media only screen and (max-width: 500px) and (min-width: 401px){
+
+    .functional-tabs{
+        display: block;
+    }
+
+    #side-bar{
+        display: none;
+    }
+
+    .buttons{
+        font-size: 0.7rem;
+        padding: 2px;
+        margin: 1px;
+    }
+
+    .add-button{
+        font-size: 0.7rem;
+        padding: 1px;
+    }
+}
+
+@media only screen and (max-width: 400px) and (min-width: 301px){
+
+    .functional-tabs{
+        display: block;
+    }
+
+    #side-bar{
+        display: none;
+    }
+
+    .buttons{
+        font-size: 0.6rem;
+        padding: 1px;
+        margin: 1px;
+    }
+
+    .add-button{
+        font-size: 0.7rem;
+        padding: 1px;
+    }
+}
+
+@media only screen and (max-width: 300px){
+    .functional-tabs{
+        display: block;
+    }
+
+    #side-bar{
+        display: none;
+    }
+
+    .buttons{
+        font-size: 0.5rem;
+        padding: 0px;
+        margin: 1px;;
+    }
+
+    .add-button{
+        font-size: 0.8rem;
+        padding: 1px;
+    }
+}

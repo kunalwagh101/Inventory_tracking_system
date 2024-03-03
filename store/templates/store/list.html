@@ -1,0 +1,33 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+{% block search %}{% endblock %}
+
+<div class="shadow-lg container bg-light" style="height: 85%;">
+    <div class="d-flex w-100 m-0 text-center justify-content-between align-items-center" style="height: 7%;">
+        <div></div>
+        <h5>{{total}} Records</h5>
+        {% block usefilter %}
+            <div class="btn-group">
+                <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Use Filter
+                </button>
+                {% block filter %}{% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+    <hr class="m-0">
+
+    <div class="container m-0 w-100 p-1 overflow-auto" style="height: 86%;">
+        {% block items %}{% endblock %}
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center w-100">
+        {% include 'store/pagination.html' %}
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

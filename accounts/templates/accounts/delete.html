@@ -1,0 +1,6 @@
+{% extends 'store/form.html' %}
+
+{% block form %}
+<h5 class="text-center">Are you sure you want to delete {{user.get_full_name}}</h5>
+<div class="text-center"><button type="submit" class="btn btn-outline-danger">Delete</button></div>
+{% endblock %}

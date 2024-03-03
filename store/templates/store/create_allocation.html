@@ -1,0 +1,28 @@
+{% extends 'store/form.html' %}
+
+{% block jquery %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#id_equipment_type').change(function(){
+            var equipment_type = $(this).val();
+            $.ajax({
+                url: '/get_ids/',
+                data: {
+                    'equipment_type': equipment_type
+                },
+                success: function(data){
+                    var len = data.length
+                    $('#id_equipment').empty()
+                    for(var i=0; i<len; i++){
+                        $('#id_equipment').append("<option value='"+data[i][0]+"'>"+data[i][1]+"</option>");
+                    }
+                    $('#id_equipment').prop('disabled', false);
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}
