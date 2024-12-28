@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +29,7 @@ SECRET_KEY = config("SECRET_KEY_VAL" ,cast =str )
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG_VALUE",cast = bool)
 
-ALLOWED_HOSTS = [ ".railway.app" , ]
+ALLOWED_HOSTS = [ ".railway.app" , '.onrender.com' , "inventory-tracking-system-3tzl.onrender.com"]
 
 if DEBUG :
     ALLOWED_HOSTS += [ ".railway.app" , 
@@ -82,6 +84,7 @@ WSGI_APPLICATION = "inventory_store.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DATABASES_URL  = config("DATABASE_URL",cast =str)
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -89,6 +92,13 @@ DATABASES = {
     }
 }
 
+
+if DATABASES_URL :
+    DATABASES = {
+    'default': dj_database_url.config(
+        default=DATABASES_URL # Fallback to SQLite if no DATABASE_URL is provided
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
